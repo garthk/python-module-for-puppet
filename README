@@ -1,5 +1,7 @@
 python-module-for-puppet: a shareable Puppet module for Python
 
+Home page: http://github.com/garthrk/python-module-for-puppet/tree/master
+
 Usage, with too many comments:
 
     include python # ensure Python and easy_setup are installed

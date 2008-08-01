@@ -1,0 +1,16 @@
+python-module-for-puppet: a shareable Puppet module for Python
+
+Usage, with too many comments:
+
+    include python # ensure Python and easy_setup are installed
+    pymod { "mysql-python": # ensure mysql-python is installed
+        name => "mysql-python", # required; previous name is ignored
+    } 
+    
+Puppet Common Modules project: 
+
+    http://reductivelabs.com/redmine/projects/show/pcm
+
+Module Standards Wiki page:
+
+    http://reductivelabs.com/trac/puppet/wiki/ModuleStandards

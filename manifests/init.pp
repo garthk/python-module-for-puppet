@@ -38,13 +38,19 @@ class python {
     }
 }
 
-define pymod($name) {
+define pymod($name,$version="") {
     $pymod_record = "/var/puppet/python/modules/$name.files"
+
+    $req_or_url = $version ? {
+       "" => "$name",
+       default => "\"$name==$version\""
+    }
+
     exec { "easy_install $name":
         cwd => "/root",
         creates => "$pymod_record",
         require => File["/usr/bin/easy_install"],
-        command => "/usr/bin/easy_install --record $pymod_record $name",
+        command => "/usr/bin/easy_install --record $pymod_record $req_or_url",
         user => "root",
         logoutput => on_failure,
     }

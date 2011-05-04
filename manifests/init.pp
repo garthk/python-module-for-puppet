@@ -1,14 +1,14 @@
 class python {
     package { "python": ensure => installed }
 
-    file { "/usr/bin/easy_install": }
+    file { "/usr/local/bin/easy_install": }
 
     exec { "easy_install installer":
-        creates => "/usr/bin/easy_install",
-        before => File["/usr/bin/easy_install"],
+        creates => "/usr/local/bin/easy_install",
+        before => File["/usr/local/bin/easy_install"],
         require => File["/var/puppet/python/ez_setup.py"],
         cwd => "/root",
-        command => "/bin/env python /var/puppet/python/ez_setup.py",
+        command => "/usr/bin/env python /var/puppet/python/ez_setup.py",
         user => "root",
         logoutput => on_failure,
     }
@@ -49,8 +49,8 @@ define pymod($name,$version="") {
     exec { "easy_install $name":
         cwd => "/root",
         creates => "$pymod_record",
-        require => File["/usr/bin/easy_install"],
-        command => "/usr/bin/easy_install --record $pymod_record $req_or_url",
+        require => File["/usr/local/bin/easy_install"],
+        command => "/usr/local/bin/easy_install --record $pymod_record $req_or_url",
         user => "root",
         logoutput => on_failure,
     }
